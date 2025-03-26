@@ -33,18 +33,23 @@ namespace LeetCodeChallenges
     {
         private static bool IsPalindrome(int x)
         {
-            string s = x.ToString();    
-            //char[] result = s.ToCharArray();
-            string reversed = new string(s.Reverse().ToArray());
+            if (x < 0 || (x % 10 == 0 && x != 0)) return false;
 
-            return s.Equals(reversed);  
+            int reversed = 0, original = x;
+            while (x > 0)
+            {
+                reversed = reversed * 10 + x % 10;
+                x /= 10;
+            }
+
+            return original == reversed;
         }
 
         public static void Main()
         {
             Console.WriteLine(IsPalindrome(121));
             Console.WriteLine(IsPalindrome(-121));
-            Console.WriteLine(IsPalindrome(10));  
+            Console.WriteLine(IsPalindrome(10));
         }
 
     }
